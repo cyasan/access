@@ -406,10 +406,10 @@ index: index
 module.exports.findIndexNumber = findIndexNumber;
 
 async function updateNumber(number, botname, connect) {
-if (!(number && botname && connect)) return {
+if (!(number && botname)) return {
 status: 400,
 creator: 'SuryaDev',
-message: 'number & botname & connect parameter is required.'
+message: 'number & botname parameter is required.'
 };
 if (isNaN(number)) return {
 status: 400,
