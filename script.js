@@ -357,12 +357,9 @@ if (!number) return mess.error(res, 'number parameter is required');
 if (!name) return mess.error(res, 'name parameter is required')
 if (isNaN(number)) return mess.error(res, 'invalid number!')
 const datenow = timezone();
-const username = await getUsername(number);
-try {
-var index = username != '' ? await findIndexNumber(username, number) : 0;
-} catch {
-var index = 0;
-}
+const result = await findIndexNumber(number);
+const username = result.username;
+const index = result.index;
 if (noticevip.has(number)) {
 let user = noticevip.get(number);
 user.name = name;
