@@ -344,16 +344,11 @@ message: 'Error fetching user: ' + String(error)
 }
 module.exports.getNumber = getNumber;
 
-async function findIndexNumber(username, number) {
-if (!(username && number)) return {
+async function findIndexNumber(number) {
+if (!number) return {
 status: 400,
 creator: 'SuryaDev',
 message: 'username & number parameter is required.'
-};
-if (username.length > 15) return {
-status: 400,
-creator: 'SuryaDev',
-message: 'Invalid username, maximum 15 characters.'
 };
 if (isNaN(number)) return {
 status: 400,
@@ -370,20 +365,42 @@ status: 400,
 creator: 'SuryaDev',
 message: 'Invalid number, start with country code.'
 };
+let username = '';
+let index = 0;
 try {
-let user = await User.findOne({
-username: username
+const users = await User.find({});
+if (users.length > 0) {
+let userData = users.map(user => ({
+username: user.username,
+password: user.password,
+access: user.access,
+number: user.number
+}));
+userData.forEach(user => {
+user.number.forEach((item, findIndex) => {
+if (item.number === number) {
+if (findIndex !== -1) {
+username = user.username;
+index = findIndex + 1;
+}
+}
 });
-if (!user) return {
-status: false,
-creator: 'SuryaDev',
-message: 'User data not found.'
+});
+return {
+username: username,
+index: index
 };
-const index = user.number.findIndex(x => x.number === number);
-const data = index ? (index + 1) : 0;
-return isNaN(data) ? 0 : data;
+} else {
+return {
+username: username,
+index: index
+};
+}
 } catch (error) {
-return 0;
+return {
+username: username,
+index: index
+};
 }
 }
 module.exports.findIndexNumber = findIndexNumber;
