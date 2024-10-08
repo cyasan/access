@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Webhook SuryaDev</title>
+<link rel="icon" href="https://telegra.ph/file/0036846dce2e415a042bd.jpg" type="image/x-icon">
+<meta name="description" content="Webhook by SuryaDev">
+<meta name="author" content="SuryaDev">
+<meta property="og:image" content="https://telegra.ph/file/0036846dce2e415a042bd.jpg">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+<style>
+body {
+font-family: monospace, sans-serif;
+margin: 0;
+padding: 0;
+background: linear-gradient(120deg, #248A52, #257287);
+box-shadow: 0px 5px 20px 0px rgba(108, 108, 229, 0.5);
+-webkit-box-shadow: 0px 5px 20px 0px rgba(108, 108, 229, 0.5);
+-moz-box-shadow: 0px 5px 20px 0px rgba(108, 108, 229, 0.5);
+}
+
+.container {
+color: #FFFFFF;
+background: linear-gradient(135deg, #044f48, #2a7561);
+font-family: "Open Sans", sans-serif;
+font-size: 21px;
+text-align: left;
+padding: 10px 0px 10px 0px;
+line-height: 1.7;
+overflow-x: hidden;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+}
+
+.login-box {
+position: absolute;
+top: 60%;
+left: 50%;
+width: 360px;
+padding: 40px;
+transform: translate(-50%, -50%);
+background: linear-gradient(to right, rgba(83, 200, 239, 0.8) 0%, rgba(81, 106, 204, 0.8) 96%);
+box-sizing: border-box;
+box-shadow: 0 15px 25px rgba(0,0,0,.6);
+border-radius: 0;
+}
+
+.login-box .user-box {
+position: relative;
+}
+
+.login-box .user-box input {
+width: 100%;
+padding: 10px 0;
+font-size: 16px;
+color: #fff;
+margin-bottom: 30px;
+border: none;
+border-bottom: 1px solid #fff;
+outline: none;
+background: transparent;
+}
+
+.login-box .user-box label {
+position: absolute;
+top: 0;
+left: 0;
+padding: 10px 0;
+font-size: 16px;
+color: #fff;
+pointer-events: none;
+transition: .5s;
+}
+
+.login-box .user-box input:focus ~ label,
+.login-box .user-box input:valid ~ label {
+top: -20px;
+left: 0;
+color: #bdb8b8;
+font-size: 12px;
+}
+
+.button {
+--color: #FFF;
+padding: 0.8em 1.7em;
+background-color: transparent;
+border-radius: .3em;
+position: relative;
+overflow: hidden;
+cursor: pointer;
+transition: .5s;
+font-weight: 400;
+font-size: 17px;
+border: 1px solid;
+font-family: inherit;
+text-transform: uppercase;
+color: var(--color);
+z-index: 1;
+}
+
+.button::before, .button::after {
+content: '';
+display: block;
+width: 50px;
+height: 50px;
+transform: translate(-50%, -50%);
+position: absolute;
+border-radius: 50%;
+z-index: -1;
+background-color: var(--color);
+transition: 1s ease;
+}
+
+.button::before {
+top: -1em;
+left: -1em;
+}
+
+.button::after {
+left: calc(100% + 1em);
+top: calc(100% + 1em);
+}
+
+.button:hover::before, .button:hover::after {
+height: 410px;
+width: 410px;
+}
+
+.button:hover {
+color: #ffff;
+}
+
+.button:active {
+filter: brightness(.8);
+}
+</style>
+</head>
+<body>
+<div class="container">
+<marquee id="text">Created by SuryaDev</marquee>
+</div>
+<div class="login-box">
+<form id="myForm" action="/send" method="POST">
+<div class="user-box">
+<input type="text" name="number" id="inputNumber" required>
+<label>masukkan nomor dia (62xxx)</label>
+</div>
+<div class="user-box">
+<input type="text" name="name" id="inputName" required>
+<label>masukkan nama kamu</label>
+</div>
+<div class="user-box">
+<input type="text" name="message" id="inputMessage" required>
+<label>pesan kamu kepada dia</label>
+</div><center>
+<input type="submit" value="send" class="button" id="submitButton">
+</form>
+</div>
+<audio src="https://github.com/Jabalsurya2105/database/raw/master/music/enakin%20aja.mp3" id="music" loop></audio>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+let audio = document.getElementById('music');
+Swal.fire({
+title: "Welcome To",
+text: "Webhook SuryaDev",
+imageUrl: "https://feeldreams.github.io/cilukba.gif",
+imageWidth: 200,
+imageHeight: 200,
+confirmButtonText: 'OK'
+}).then(async (result)  => {
+if (result.isConfirmed) {
+await audio.play()
+toggleFullScreen()
+}
+})
+})
+
+function toggleFullScreen() {
+if (!document.fullscreenElement) {
+document.documentElement.requestFullscreen();
+} else {
+if (document.exitFullscreen) {
+document.exitFullscreen();
+}
+}
+}
+
+const inputNumber = document.getElementById('inputNumber');
+const inputName = document.getElementById('inputName');
+const inputMessage = document.getElementById('inputMessage');
+
+const button = document.getElementById('submitButton');
+const form = document.querySelector('form');
+const loader = document.querySelector('.spinner');
+const reply = (icon, text, title) => Swal.fire({ icon: icon, title: title, text: text });
+
+form.addEventListener('submit', function() {
+button.disabled = true;
+loader.style.display = 'block';
+});
+
+document.addEventListener('contextmenu', function(event) {
+event.preventDefault();
+});
+
+document.addEventListener('selectstart', function(event) {
+event.preventDefault();
+});
+
+document.getElementById('inputNumber').addEventListener('change', function() {
+let number = isNaN(inputNumber.value) ? inputNumber.value.replace(/[^0-9]/g, '') : inputNumber.value;
+if (isNaN(number)) {
+reply('error', 'Invalid number!');
+document.getElementById('inputNumber').value = '';
+}
+if (number.length > 15) {
+reply('error', 'Invalid format!');
+document.getElementById('inputNumber').value = '';
+}
+if (number.length < 12) {
+reply('error', 'Invalid format!');
+document.getElementById('inputNumber').value = '';
+}
+if (!number.startsWith('62')) {
+reply('error', 'Nomor harus diawali dengan 62')
+document.getElementById('inputNumber').value = '';
+}
+if (number == '62895415497664') {
+reply('error', 'Access denied!')
+document.getElementById('inputNumber').value = '';
+}
+});
+
+document.getElementById("submitButton").addEventListener("click", function() {
+if (inputNumber.value == '') return reply('error', 'Number is required')
+if (inputNumber.value.length > 15) {
+reply('error', 'Invalid format!');
+document.getElementById('inputNumber').value = '';
+}
+if (inputNumber.value.length < 12) {
+reply('error', 'Invalid format!');
+document.getElementById('inputNumber').value = '';
+}
+if (inputName.value == '') return reply('error', 'Name is required')
+if (inputMessage.value == '') return reply('error', 'Message is required')
+reply('success', 'Pesan berhasil terkirim!')
+});
+
+</script>
+</body>
+</html>
