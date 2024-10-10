@@ -162,7 +162,7 @@ name: 'api/obfus',
 method: 'POST',
 status: true
 },
-{
+/*{
 name: 'games/asahotak',
 method: 'GET',
 status: true
@@ -246,7 +246,7 @@ status: true
 name: 'games/tebaklogo',
 method: 'GET',
 status: true
-},
+},*/
 {
 name: 'api/levelup',
 method: 'GET',
@@ -923,9 +923,9 @@ status: 200,
 creator: 'SuryaDev',
 message: 'data deleted successfully.'
 });
-});*/
+});
 
-/* GAMES API BY SURYADEV */
+// Games Api By SuryaDev
 router.get('/games/asahotak', async (req, res) => {
 const result = AsahOtak()
 res.json(result)
@@ -1031,7 +1031,7 @@ res.json(result)
 router.get('/games/tebaklogo', async (req, res) => {
 const result = TebakLogo()
 res.json(result)
-})
+})*/
 
 router.get('/api/levelup', async (req, res) => {
 const { currentxp, userlevel, requiredxp, username, profile } = req.query;
@@ -1113,10 +1113,14 @@ message: String(error)
 
 router.get('/api/mechaai', async (req, res) => {
 const { question, username } = req.query;
+try {
 if (!question) return mess.error(res, 'question parameter is required');
 if (!username) return mess.error(res, 'username parameter is required');
 const result = await MechaAI(question, username)
 res.json(result)
+} catch (error) {
+res.status(500).send({ error: error.message });
+}
 })
 
 router.get('/api/yts', async (req, res) => {
@@ -1234,7 +1238,7 @@ const data = listApi.filter(x => x.status)
 let result = [];
 data.forEach(item => {
 result.push({
-url: 'suryadev.vercel.app/' + item.name,
+url: 'lulli.vercel.app/' + item.name,
 method: item.method,
 status: item.status ? '✅' : '❌'
 })
