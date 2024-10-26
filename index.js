@@ -29,7 +29,7 @@ app.get('/', (req, res) => {
 res.render('home')
 });
 
-app.get('/messages', (req, res) => {
+/*app.get('/messages', (req, res) => {
 const data = database;
 res.json({ status: 200, result: data });
 });
@@ -69,7 +69,7 @@ res.redirect('/');
 app.get('/delete/messages', (req, res) => {
 database = []
 res.redirect('/');
-});
+});*/
 
 app.use('/', apiRoutes)
 
