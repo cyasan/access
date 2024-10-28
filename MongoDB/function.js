@@ -134,7 +134,7 @@ message: 'User data not found.'
 module.exports.checkUser = checkUser;
 
 async function changeAccessUser(username, statuses) {
-if (!(username && typeof statuses == 'undefined')) return {
+if (!(username && statuses !== undefined)) return {
 status: 400,
 creator: 'SuryaDev',
 message: 'username & statuses parameter is required.'
