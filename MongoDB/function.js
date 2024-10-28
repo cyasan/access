@@ -134,7 +134,7 @@ message: 'User data not found.'
 module.exports.checkUser = checkUser;
 
 async function changeAccessUser(username, statuses) {
-if (!(username && statuses)) return {
+if (!(username && typeof statuses == 'undefined')) return {
 status: 400,
 creator: 'SuryaDev',
 message: 'username & statuses parameter is required.'
@@ -164,7 +164,7 @@ await user.save();
 return {
 status: 200,
 creator: 'SuryaDev',
-message: `Successfully changed access on username ${username} to ${statuses}`
+message: `Successfully changed access on username ${username} to ${statuses ? 'whitelist' : 'blacklist'}`
 };
 } else {
 return {
