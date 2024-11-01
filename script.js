@@ -3,7 +3,8 @@ const { Router } = require('express');
 const axios = require('axios');
 const cheerio = require('cheerio');
 const FormData = require('form-data');
-const yts = require('yt-search')
+const yts = require('yt-search');
+const os = require('os');
 const cekNIK = require('./ceknik.js');
 const MechaAI = require('./mecha-ai.js');
 const ttslide = require('./tiktokslide.js');
@@ -280,6 +281,30 @@ message: msg
 }
 }
 }
+
+router.get('/stats', (req, res) => {
+const stats = {
+platform: os.platform(),
+architecture: os.arch(),
+totalMemory: os.totalmem(),
+freeMemory: os.freemem(),
+uptime: os.uptime(),
+cpuModel: os.cpus()[0].model,
+numCores: os.cpus().length,
+loadAverage: os.loadavg(),
+hostname: os.hostname(),
+networkInterfaces: os.networkInterfaces(),
+osType: os.type(),
+osRelease: os.release(),
+userInfo: os.userInfo(),
+processId: process.pid,
+nodeVersion: process.version,
+execPath: process.execPath,
+cwd: process.cwd(),
+memoryUsage: process.memoryUsage()
+};
+res.json(stats);
+});
 
 /* NOTIFIKASI SCRIPT FREE */
 router.get('/notif/send', async (req, res) => {
