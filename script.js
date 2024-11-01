@@ -8,7 +8,11 @@ const os = require('os');
 const cekNIK = require('./ceknik.js');
 const MechaAI = require('./mecha-ai.js');
 const ttslide = require('./tiktokslide.js');
-const YT = new (require('./youtube.js'));
+const {
+ytvideo,
+y2matemp3,
+y2matemp4
+} = require('./y2mate.js');
 const {
 obfus,
 alquran,
@@ -685,7 +689,7 @@ const result = await stickersearch(query)
 res.json(result)
 })
 
-router.get('/api/play', async (req, res) => {
+/*router.get('/api/play', async (req, res) => {
 const { query, type } = req.query;
 if (!query) return mess.error(res, 'query parameter is required');
 if (!type) return mess.error(res, 'type parameter is required');
@@ -695,19 +699,19 @@ return json
 }
 const result = await play(query, type)
 res.json(result)
-})
+})*/
 
 router.get('/api/ytmp3', async (req, res) => {
 const { url } = req.query;
 if (!url) return mess.error(res, 'url parameter is required');
-const result = await YT.getmp3(url)
+const result = await y2matemp3(url)
 res.json(result)
 })
 
 router.get('/api/ytmp4', async (req, res) => {
 const { url } = req.query;
 if (!url) return mess.error(res, 'url parameter is required');
-const result = await YT.getmp4(url)
+const result = await y2matemp4(url)
 res.json(result)
 })
 
