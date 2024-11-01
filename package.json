@@ -29,10 +29,12 @@
     "morgan": "^1.10.0",
     "mongoose": "latest",
     "node-fetch": "^2.6.1",
+    "os": "^0.1.2",
     "path": "^0.12.7",
     "server": "^1.0.27",
     "socket.io": "^2.3.0",
-    "yt-search": "^2.10.3"
+    "yt-search": "^2.10.3",
+    "ytdl-core": "^4.11.5"
   },
     "homepage": "https://github.com/Jabalsurya2105/suryadev#readme"
 }
