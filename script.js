@@ -9,11 +9,6 @@ const cekNIK = require('./ceknik.js');
 const MechaAI = require('./mecha-ai.js');
 const ttslide = require('./tiktokslide.js');
 const {
-ytvideo,
-y2matemp3,
-y2matemp4
-} = require('./y2mate.js');
-const {
 obfus,
 alquran,
 instagramdl,
@@ -699,7 +694,7 @@ return json
 }
 const result = await play(query, type)
 res.json(result)
-})*/
+})
 
 router.get('/api/ytmp3', async (req, res) => {
 const { url } = req.query;
@@ -720,7 +715,7 @@ const { url } = req.query;
 if (!url) return mess.error(res, 'url parameter is required');
 const result = await y2mate(url)
 res.json(result)
-})
+})*/
 
 router.get('/api/alquran', async (req, res) => {
 const { surah, ayat } = req.query;
